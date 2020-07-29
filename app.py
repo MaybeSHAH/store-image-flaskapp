@@ -2,7 +2,7 @@ import os
 import requests
 import math
 import re
-import cv2
+#import cv2
 import qrcode
 from flask import Flask, session, render_template, request, redirect, url_for, jsonify, flash
 from flask_session import Session
