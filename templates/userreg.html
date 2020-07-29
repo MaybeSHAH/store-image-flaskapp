@@ -5,20 +5,22 @@
 {% endblock %}
 
 {% block body %}
-
+    <div style="text-align: center;"><img src="static/img/sas.jpeg" width="200" height="150" alt="logo-sas"></div>
+    <div style="text-align: center;"><a href="http://sasnextgen.co.in/"><p><strong>SAS Automation Pvt. Ltd.</strong></p></a> </div>
     <div class="box m-top">
-        <h2>Enter your details:</h2>
+        <h2>Meditech Visitor App</h2>
         <p>All fields are required.</p>
+        
         <form id="userform" action="{{ url_for('index') }}" method="POST">
           <div class="form-group">
-              <input type="text" class="form-control" placeholder="Employee Name" name="ename" autofocus required>
+              <input type="text" class="form-control" placeholder="Visitor's Name" name="vname" autofocus autocomplete="off" required>
           </div><br/>
           <div class="form-group">
-              <input type="text" class="form-control" placeholder="Employee ID" name="eid" id="eid" autocomplete="off" required>
+              <input type="text" class="form-control" placeholder="Whom to meet" name="person" autocomplete="off" required>
               <!--<h4 id='loading' style="display:none;"><img src="{{ url_for('static', filename='img/loader.gif') }}"/> Loading..</h4>-->
           </div><br/>
           <div class="form-group">
-              <input type="text" class="form-control" placeholder="Address" name="address" required>
+              <input type="text" class="form-control" placeholder="Visitors's Company Name" name="cname" autocomplete="off" required>
           </div><br/>
           <!--
           <div class="form-group">
@@ -33,7 +35,8 @@
             <div class="form-group">
                 <input type="password" class="form-control" placeholder="Confirm Password" name="re-password" required>
             </div> -->
-            <button class="btn btn-primary">Submit</button>
+            <button class="btn btn-primary">Submit</button><br/>
+            <p>(Note:After submit QR Code will be generate.)</p>
         </form>
     </div>
     <!--

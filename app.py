@@ -2,6 +2,7 @@ import os
 import requests
 import math
 import re
+import random
 #import cv2
 import qrcode
 from flask import Flask, session, render_template, request, redirect, url_for, jsonify, flash
@@ -34,15 +35,16 @@ def index():
 
     if request.method == "POST":
         # Get user info
-        empname = request.form.get('ename')
-        empid = request.form.get('eid')
-        address = request.form.get('address')
+        vname = request.form.get('vname')
+        person = request.form.get('person')
+        cname = request.form.get('cname')
 
         
         # example data
-        data = empname , empid, address
+        data = vname , person, cname
         # output file name
-        filename = "static/img/qrcode.png"
+        n = random.random()
+        filename = "static/img/qrcode"+str(n)+".png"
         # generate qr code
         img = qrcode.make(data)
         
