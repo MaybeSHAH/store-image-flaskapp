@@ -9,3 +9,4 @@ sqlalchemy_utils
 gunicorn==19.9.0
 Click==7.0
 qrcode
+Image
