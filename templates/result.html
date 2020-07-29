@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block body %}
+    <h1 style="text-align: center;">Generated QR Code</h1>
+    <hr>
+    
+        <div style="text-align: center;"><img src={{ filename }} title="Scan this to transfer data" alt="something went wrong"></div>
+        <div style="text-align: center;">
+        <button class="btn btn-primary" onclick="location.href='/'" type="button">
+            Exit</button></div>
+            
+{% endblock %}

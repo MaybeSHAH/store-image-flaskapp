@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Form
+{% endblock %}
+
+{% block body %}
+
+    <div class="box m-top">
+        <h2>Enter your details:</h2>
+        <p>All fields are required.</p>
+        <form id="userform" action="{{ url_for('index') }}" method="POST">
+          <div class="form-group">
+              <input type="text" class="form-control" placeholder="Employee Name" name="ename" autofocus required>
+          </div><br/>
+          <div class="form-group">
+              <input type="text" class="form-control" placeholder="Employee ID" name="eid" id="eid" autocomplete="off" required>
+              <!--<h4 id='loading' style="display:none;"><img src="{{ url_for('static', filename='img/loader.gif') }}"/> Loading..</h4>-->
+          </div><br/>
+          <div class="form-group">
+              <input type="text" class="form-control" placeholder="Address" name="address" required>
+          </div><br/>
+          <!--
+          <div class="form-group">
+              <input type="text" class="form-control" placeholder="Player3:Username" name="player3" required>
+          </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Player4:Username" name="player4" required>
+            </div>
+             <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" name="password" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Confirm Password" name="re-password" required>
+            </div> -->
+            <button class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <!--
+    <div class="box">
+        Have an account? <a href="{{ url_for('index') }}">Log in</a>
+    </div> -->
+
+{% endblock %}
