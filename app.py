@@ -38,10 +38,10 @@ def index():
         vname = request.form.get('vname')
         person = request.form.get('person')
         cname = request.form.get('cname')
-
+        w_type = 'Visitor'
         
         # example data
-        data = vname , person, cname
+        data = vname , person, cname, w_type 
         # output file name
         n = random.random()
         filename = "static/img/qrcode"+str(n)+".png"
