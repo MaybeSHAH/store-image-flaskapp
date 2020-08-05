@@ -13,12 +13,7 @@ from werkzeug.security import generate_password_hash,check_password_hash
 from helpers import login_required
 
 app = Flask(__name__)
-#app.config['DATABASE_URL']= "postgres://lqdwcanfmizgnc:bae307e8297fb669e4d3e02be1a59e7d886b7c7eaa6a12b577340f5f6a0294ea@ec2-50-16-198-4.compute-1.amazonaws.com:5432/dabop3r1q3qe44"
-#os.environ["DATABASE_URL"]= "postgres://lqdwcanfmizgnc:bae307e8297fb669e4d3e02be1a59e7d886b7c7eaa6a12b577340f5f6a0294ea@ec2-50-16-198-4.compute-1.amazonaws.com:5432/dabop3r1q3qe44"
 
-# Check for environment variable
-#if not os.getenv("DATABASE_URL"):
-#    raise RuntimeError("DATABASE_URL is not set")
 
 # Configure session to use filesystem
 app.config["SESSION_PERMANENT"] = False
