@@ -38,7 +38,7 @@ now = datetime.now(tz)
 var_time = now.strftime("%H:%M:%S")
 print(date)
 print(var_time)'''
-db.execute('INSERT INTO records ( "r_url", "r_date" , "r_time" ,"r_faceMask" ,"r_handSanitized","r_uvSanitized", "r_fogging", "r_temperature", "r_name", "r_phone", "r_personToMeet", "r_cold", "r_fever", "r_cough") VALUES (:url, CAST(:date as DATE), CAST(:time as TIME), :fm, :hs, :us, :fogg, :temp, :name, :phone, :person, :cold, :fever, :cough)',{'url': url_name['name'], 'date': '20210218', 'time': '04:33:21', 'fm': True, 'hs': True, 'us': True, 'fogg': True, 'temp': True, 'name': 'shah', 'phone': 2345, 'person': 'sanjay', 'cold': True, 'fever': True, 'cough': True})
+db.execute('INSERT INTO records ( "r_url", "r_date" , "r_time" ,"r_faceMask" ,"r_handSanitized","r_uvSanitized", "r_fogging", "r_temperature", "r_name", "r_phone", "r_personToMeet", "r_cold", "r_fever", "r_cough") VALUES (:url, CAST(:date as DATE), CAST(:time as TIME), :fm, :hs, :us, :fogg, :temp, :name, :phone, :person, :cold, :fever, :cough)',{'url': url_name['name'], 'date': '20210218', 'time': '04:33:21', 'fm': True, 'hs': True, 'us': True, 'fogg': True, 'temp': True, 'name': 'shah', 'phone': 9999999999, 'person': 'sanjay', 'cold': True, 'fever': True, 'cough': True})
 
 #db.execute(sql)
 db.commit()

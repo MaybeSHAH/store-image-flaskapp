@@ -7,45 +7,47 @@
 {% block body %}
     <h1 style="text-align: center;">Records</h1>
     <hr>
-        
-        
-<table border="1" cellspacing="2" cellpadding="5"><tbody>
-    <tr>
-                <th class="table_titles">Name</th>
-                <th class="table_titles">Photo</th>
-                <th class="table_titles">Phone</th>
-                <th class="table_titles">Enrty Time</th>
-                <th class="table_titles">Date</th>
-                <th class="table_titles">Person To Meet</th>
-                <th class="table_titles">Hand Sanitized</th>
-                <th class="table_titles">UV Sanitized</th>
-                <th class="table_titles">Fogging</th>
-                <th class="table_titles">Face Mask</th>
-                <th class="table_titles">Body Temprature</th>
-                <th class="table_titles">Cold</th>
-                <th class="table_titles">Fever</th>
-                <th class="table_titles">Cough</th>
-              </tr>   
+    <table class="table table-sm table-striped table-dark" style="margin-left: auto; 
+    margin-right: auto;">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Photo</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Time</th>
+          <th scope="col">Date</th>
+          <th scope="col">PersonToMeet</th>
+          <th scope="col">Hand Sanitized</th>
+          <th scope="col">UV Sanitized</th>
+          <th scope="col">Fogging</th>
+          <th scope="col">FaceMask</th>
+          <th scope="col">Body Temp</th>
+          <th scope="col">Cold</th>
+          <th scope="col">Fever</th>
+          <th scope="col">Cough</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for sublist in records %}
               <tr>
-                <td > {{ records[0][9] }}[</td>
-                <td ><img src={{ records[0][1] }} alt="image not found"></td>
-                <td >Phone</td>
-                <td >Enrty Time</td>
-                <th >Date</td>
-                <td>Person To Meet</td>
-                <td >Hand Sanitized</td>
-                <td >UV Sanitized</td>
-                <td >Fogging</td>
-                <td >Face Mask</td>
-                <td>Body Temprature</td>
-                <td>Cold</td>
-                <td >Fever</td>
-                <td >Cough</td>
-              </tr></tbody>   
-              </table>
-        <div style="text-align: center;"><img src={{ records[0][1] }} title="Scan this to transfer data" alt="something went wrong"></div>
-        <div style="text-align: center;">
-        <button class="btn btn-primary" onclick="location.href='/'" type="button">
-            Exit</button></div>
-            
+                <th scope="row">{{ sublist[0] }}</th>
+                <td > {{ sublist[9] }}</td>
+                <td ><img src={{ sublist[1] }} alt="image not found" style="height:100px; width:100px;"></td>
+                <td >{{ sublist[10] }} </td>
+                <td >{{ sublist[3] }}</td>
+                <th >{{ sublist[2] }}</td>
+                <td>{{ sublist[11] }}</td>
+                <td >{{ sublist[4] }}</td>
+                <td >{{ sublist[6] }}</td>
+                <td >{{ sublist[7] }}</td>
+                <td >{{ sublist[4] }}</td>
+                <td>{{ sublist[8] }}</td>
+                <td>{{ sublist[12] }}</td>
+                <td >{{ sublist[13] }}</td>
+                <td >{{ sublist[14] }}</td>
+              </tr>
+              {% endfor %}
+      </tbody>
+    </table>              
 {% endblock %}
