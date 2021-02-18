@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Records
+{% endblock %}
+
+{% block body %}
+    <h1 style="text-align: center;">Records</h1>
+    <hr>
+        
+        
+<table border="1" cellspacing="2" cellpadding="5"><tbody>
+    <tr>
+                <th class="table_titles">Name</th>
+                <th class="table_titles">Photo</th>
+                <th class="table_titles">Phone</th>
+                <th class="table_titles">Enrty Time</th>
+                <th class="table_titles">Date</th>
+                <th class="table_titles">Person To Meet</th>
+                <th class="table_titles">Hand Sanitized</th>
+                <th class="table_titles">UV Sanitized</th>
+                <th class="table_titles">Fogging</th>
+                <th class="table_titles">Face Mask</th>
+                <th class="table_titles">Body Temprature</th>
+                <th class="table_titles">Cold</th>
+                <th class="table_titles">Fever</th>
+                <th class="table_titles">Cough</th>
+              </tr>   
+              <tr>
+                <td > {{ records[0][9] }}[</td>
+                <td ><img src={{ records[0][1] }} alt="image not found"></td>
+                <td >Phone</td>
+                <td >Enrty Time</td>
+                <th >Date</td>
+                <td>Person To Meet</td>
+                <td >Hand Sanitized</td>
+                <td >UV Sanitized</td>
+                <td >Fogging</td>
+                <td >Face Mask</td>
+                <td>Body Temprature</td>
+                <td>Cold</td>
+                <td >Fever</td>
+                <td >Cough</td>
+              </tr></tbody>   
+              </table>
+        <div style="text-align: center;"><img src={{ records[0][1] }} title="Scan this to transfer data" alt="something went wrong"></div>
+        <div style="text-align: center;">
+        <button class="btn btn-primary" onclick="location.href='/'" type="button">
+            Exit</button></div>
+            
+{% endblock %}

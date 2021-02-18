@@ -1,3 +1,3 @@
-#Barcode-app Project
+#Datavision-app Project
 
-Web Programming with Python and JavaScript
+Datavision App for stored database. 
