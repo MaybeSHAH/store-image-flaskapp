@@ -9,7 +9,10 @@ import cv2
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
-addr = 'http://localhost:5000'
+#addr = 'http://datashow.herokuapp.com
+#addr = 'http://208.109.9.105'
+addr = 'http://127.0.0.1:5000'
+#http://datashow.herokuapp.com/
 test_url = addr + '/'
 os.environ["DATABASE_URL" ] = "postgres://lqdwcanfmizgnc:bae307e8297fb669e4d3e02be1a59e7d886b7c7eaa6a12b577340f5f6a0294ea@ec2-50-16-198-4.compute-1.amazonaws.com:5432/dabop3r1q3qe44";
 
@@ -17,12 +20,11 @@ os.environ["DATABASE_URL" ] = "postgres://lqdwcanfmizgnc:bae307e8297fb669e4d3e02
 engine = create_engine(os.environ["DATABASE_URL"])
 db = scoped_session(sessionmaker(bind=engine))
 
-# prepare headers for http request
+# prepare headers foraccess xrdp clienttic/img/qrcode0.27349510842284597.png')
 content_type = 'image/jpeg'
 headers = {'content-type': content_type}
-#send image from here
-img = cv2.imread('static/img/qrcode0.27349510842284597.png')
 # encode image as jpeg
+img = cv2.imread('static/img/user0.5246528745055944.png')
 _, img_encoded = cv2.imencode('.jpg', img)
 # send http request with image and receive response
 response = requests.post(test_url, data=img_encoded.tostring(), headers=headers)

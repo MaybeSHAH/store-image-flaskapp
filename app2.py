@@ -1,55 +1,75 @@
+import io
 import os
-import requests
-import math
-import re
-import random
-import jsonpickle
+import json                    
+import base64                  
+import logging   
+import random   
+import cv2       
 import numpy as np
-import cv2
-from flask import Flask, request, Response
+from PIL import Image
+from flask import Flask, request, Response, jsonify, abort
 from datetime import datetime, date
-import pytz
 from flask import Flask, session, render_template, request, redirect, url_for, jsonify, flash
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-app = Flask(__name__)
+app = Flask(__name__)          
+#app.logger.setLevel(logging.DEBUG)
 
 os.environ["DATABASE_URL" ] = "postgres://lqdwcanfmizgnc:bae307e8297fb669e4d3e02be1a59e7d886b7c7eaa6a12b577340f5f6a0294ea@ec2-50-16-198-4.compute-1.amazonaws.com:5432/dabop3r1q3qe44";
-
+UPLOAD_FOLDER = './static/img/'
 # Configure session to use filesystem
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 #Session(app)
 
 # Set up database
 engine = create_engine(os.environ["DATABASE_URL"])
 db = scoped_session(sessionmaker(bind=engine))
-
-
+ 
+  
 @app.route("/", methods=["GET", "POST"])
-def index():
+def index():  
+    if request.method == "POST":       
+        # print(request.json)      
+        if not request.json or 'image' not in request.json: 
+            abort(400)
+             
+        # get the base64 encoded string
+        im_b64 = request.json['image']
 
-    if request.method == "POST":
-        r = request
-        # convert string of image data to uint8
-        nparr = np.fromstring(r.data, np.uint8)
-        # decode image
-        img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+        # convert it into bytes  
+        img_bytes = base64.b64decode(im_b64.encode('utf-8'))
+
+        # convert bytes data to PIL Image object
+        #img=np.array(np.rot90(img_bytes,-1))
+        img = Image.open(io.BytesIO(img_bytes))
+        #pil_image = PIL.Image.open('image.jpg')
+        opencvImage = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
         n = random.random()
-        filepath = "static/img/user"+str(n)+".png"
+        filename = "user"+str(n)+".png"
+        filepath = './static/img/user'+str(n)+'.png'
         # do some fancy processing here....
         #saving file cv2.imwrite(path,img_to_save)
-        cv2.imwrite(filepath,img)
-        # build a response dict to send back to client
-        filename = {'name': filepath }
-        #response = {'message': 'image received. size={}x{}'.format(img.shape[1], img.shape[0])}
-        # encode response using jsonpickle
-        response_pickled = jsonpickle.encode(filename)
+        #cv2.imwrite(filepath,img)
+        #file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        #img = img.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        #img.save(os.path.join(app.root_path, '/static/img/', filename), 'png')
+        cv2.imwrite(os.path.join('/static/img/', filename), opencvImage)
+        #img = img.save(filepath)
+        # PIL image object to numpy array
+        img_arr = np.asarray(img)
+        print('img shape', img_arr.shape)
 
-        return Response(response=response_pickled, status=200, mimetype="application/json")
-        # User reached route via GET (as by clicking a link or via redirect)
+        # process your img_arr here    
+    
+        # access other keys of json
+        # print(request.json['other_key'])
+
+        result_dict = {'output': os.path.join('/static/img/', filename)}
+        return result_dict
     else:
         '''var_url = 'static/img/qrcode0.27349510842284597.png'
         var_date = date.today();
@@ -65,11 +85,10 @@ def index():
         records = db.execute('SELECT * FROM records').fetchall()
         print (records)
         return render_template('table.html', records=records)
-        
-
-
-
-
-if __name__ == '__main__':
-    # Threaded option to enable multiple instances for multiple user access support
-    app.run(threaded=True, port=5000)
+  
+def run_server_api():
+    app.run(host='0.0.0.0', port=5000)
+  
+  
+if __name__ == "__main__":     
+    run_server_api()
